@@ -43,7 +43,7 @@ public class Question6Test {
     assertTrue(drink.isFizzy());
     assertEquals(drink.getName(), "ScottCola");
   }
-
+  @Test
   public void machineResets() throws Exception {
     VendingMachine vm = VendingMachineImpl.getInstance();
 
@@ -58,7 +58,6 @@ public class Question6Test {
       vm.pressButton("ScottCola");
     });
   }
-
   @Test
   public void canGetKarenTeaForOneDollar() throws Exception {
     VendingMachine vm = VendingMachineImpl.getInstance();
@@ -67,10 +66,10 @@ public class Question6Test {
     vm.insertQuarter();
     vm.insertQuarter();
 
-    // Test that KarenTea costs more than 75 cents.
-    assertThrows(NotEnoughMoneyException.class, () -> {
-      vm.pressButton("KarenTea");
-    });
+      // Test that KarenTea costs at least  75 cents.
+      assertThrows(NotEnoughMoneyException.class, () -> {
+          vm.pressButton("KarenTea");
+      });
 
     vm.insertQuarter();
 
